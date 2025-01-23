@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujwal Guru - Full Stack Developer</title>
+    
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #111;
+            color: #f4f4f4;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #ff4a56;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: #ff4a56;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #111;
+            padding: 50px;
+            position: relative;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 50px;
+            font-weight: bold;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .btn-primary {
+            background-color: #ff4a56;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #e43a47;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: right;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 80%;
+            border-radius: 10px;
+            border: 5px solid #ff4a56;
+        }
+
+        .skills, .projects, .contact {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #222;
+        }
+
+        h2 {
+            font-size: 40px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            width: 100px;
+            height: 3px;
+            background-color: #ff4a56;
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+        }
+
+        .skill-container, .project-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .skill, .project {
+            background-color: #333;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+            text-align: left;
+        }
+
+        .skill:hover, .project:hover {
+            transform: translateY(-10px);
+            background-color: #444;
+        }
+
+        .skill h3, .project h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .skill p, .project p {
+            font-size: 18px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #ff4a56;
+        }
+
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 20px;
+            text-align: center;
+            border-top: 2px solid #ff4a56;
+        }
+
+        .hero .neon-circle {
+            position: absolute;
+            border: 5px solid #ff4a56;
+            border-radius: 50%;
+            width: 320px;
+            height: 320px;
+            top: 20%;
+            left: 70%;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+        }
+
+        /* Cursor Trail Effect */
+        body {
+            cursor: none;
+        }
+
+        .cursor-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff4a56;
+            pointer-events: none;
+            animation: trail 0.3s ease-out infinite;
+        }
+
+        @keyframes trail {
+            from {
+                transform: scale(1.5);
+                opacity: 0.6;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-image {
+                text-align: center;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+            }
+
+            .skill-container, .project-container {
+                flex-direction: column;
+            }
+
+            .skill, .project {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Ujwal Guru</div>
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home icon"></i>Home</a></li>
+            <li><a href="#skills"><i class="fas fa-cogs icon"></i>Skills</a></li>
+            <li><a href="#projects"><i class="fas fa-briefcase icon"></i>Projects</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope icon"></i>Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>I'm Ujwal Guru <br> Full Stack Developer</h1>
+        <p>Passionate about building visually appealing websites and complex animations that blend technology with creativity.</p>
+        <a href="#contact" class="btn-primary">Hire Me</a>
+    </div>
+    <div class="hero-image">
+        <img src="developer.png" alt="Ujwal Guru">
+        <div class="neon-circle"></div>
+    </div>
+</section>
+
+<section id="skills" class="skills">
+    <h2>My Skills</h2>
+    <div class="skill-container">
+        <div class="skill">
+            <h3><i class="fas fa-code icon"></i>Web Development</h3>
+            <p>HTML, CSS, JavaScript, Python, Django</p>
+        </div>
+        <div class="skill">
+            <h3><i class="fas fa-video icon"></i>Video Editing</h3>
+            <p>Adobe Premiere Pro, Final Cut Pro</p>
+        </div>
+        <div class="skill">
+            <h3><i class="fas fa-film icon"></i>Animation</h3>
+            <p>After Effects, Blender</p>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="projects">
+    <h2>Recent Projects</h2>
+    <div class="project-container">
+        <div class="project">
+            <h3><i class="fas fa-laptop icon"></i>Project 1: Web Portfolio</h3>
+            <p>Developed a stunning portfolio website using HTML, CSS, and JavaScript with a dark theme.</p>
+        </div>
+        <div class="project">
+            <h3><i class="fas fa-mobile-alt icon"></i>Project 2: Mobile App Design</h3>
+            <p>Created a responsive and interactive mobile app interface for a fitness app using React Native.</p>
+        </div>
+        <div class="project">
+            <h3><i class="fas fa-database icon"></i>Project 3: E-commerce Website</h3>
+            <p>Built a full-stack e-commerce platform using Django and integrated Stripe for payment processing.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <p>If you're interested in collaborating or hiring me, feel free to reach out through the following channels:</p>
+    <div class="contact-container">
+        <div class="contact-item">
+            <h3><i class="fas fa-envelope icon"></i>Email</h3>
+            <p>ujwal.guru999@gmail.com</p>
+        </div>
+        <div class="contact-item">
+            <h3><i class="fas fa-phone icon"></i>Phone</h3>
+            <p>+91 8355872634</p>
+        </div>
+        <div class="contact-item">
+            <h3><i class="fas fa-map-marker-alt icon"></i>Location</h3>
+            <p>Mumbai, India</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Ujwal Guru. All Rights Reserved.</p>
+    <p>Follow me on 
+        <a href="https://github.com/ujwalguru" target="_blank"><i class="fab fa-github icon"></i></a> 
+        <a href="https://linkedin.com/in/ujwalguru" target="_blank"><i class="fab fa-linkedin icon"></i></a>
+        <a href="https://twitter.com/ujwalguru" target="_blank"><i class="fab fa-twitter icon"></i></a>
+    </p>
+</footer>
+
+<!-- Cursor trail script -->
+<script>
+    const body = document.querySelector('body');
+
+    const cursorDot = document.createElement('div');
+    cursorDot.classList.add('cursor-dot');
+    body.appendChild(cursorDot);
+
+    window.addEventListener('mousemove', (e) => {
+        cursorDot.style.left = `${e.pageX}px`;
+        cursorDot.style.top = `${e.pageY}px`;
+    });
+
+    // Remove cursor dot after some time to prevent buildup
+    setInterval(() => {
+        const newDot = document.createElement('div');
+        newDot.classList.add('cursor-dot');
+        newDot.style.left = cursorDot.style.left;
+        newDot.style.top = cursorDot.style.top;
+        body.appendChild(newDot);
+        setTimeout(() => {
+            newDot.remove();
+        }, 600);
+    }, 200);
+</script>
+
+</body>
+</html>
